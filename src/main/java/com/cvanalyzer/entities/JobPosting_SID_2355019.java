@@ -3,7 +3,7 @@ package com.cvanalyzer.entities;
 
 import java.util.List;
 
-public class JobPosting {
+public class JobPosting_SID_2355019 {
 
     private String jobTitle;
     private List<String> requiredSkills;

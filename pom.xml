@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.cvanalyzer</groupId>
-	<artifactId>SID-255019</artifactId>
+	<artifactId>SID-2355019</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
@@ -65,7 +65,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.cvanalyzer.SID-255019.CVAnalyzerCLI</mainClass>
+							<mainClass>com.cvanalyzer.SID-2355019.CVAnalyzerCLI_SID_2355019</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

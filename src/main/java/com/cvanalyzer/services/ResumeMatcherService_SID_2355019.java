@@ -1,18 +1,18 @@
 package com.cvanalyzer.services;
 
-import com.cvanalyzer.entities.ResumeDetails;
-import com.cvanalyzer.entities.JobPosting;
-import com.cvanalyzer.connect.DBConnection;
+import com.cvanalyzer.entities.ResumeDetails_SID_2355019;
+import com.cvanalyzer.entities.JobPosting_SID_2355019;
+import com.cvanalyzer.connect.DBConnection_SID_2355019;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ResumeMatcherService {
+public class ResumeMatcherService_SID_2355019 {
 
     public static void matchResumes(String jobDescriptionText, String resumesFolderPath) {
         // Use job description passed directly as a String
-        JobPosting jobDescription = new JobPosting();
+        JobPosting_SID_2355019 jobDescription = new JobPosting_SID_2355019();
         jobDescription.setJobDescription(jobDescriptionText);
         
         // Extract required skills directly from the job description
@@ -20,33 +20,33 @@ public class ResumeMatcherService {
         jobDescription.setRequiredSkills(skills);
 
         // Ensure resumes are parsed and available
-        ResumeParserService.uploadResumes(resumesFolderPath);
-        List<ResumeDetails> resumes = ResumeParserService.getParsedResumes();
+        ResumeParserService_SID_2355019.uploadResumes(resumesFolderPath);
+        List<ResumeDetails_SID_2355019> resumes = ResumeParserService_SID_2355019.getParsedResumes();
 
         if (resumes == null || resumes.isEmpty()) {
             System.out.println("❌ No resumes uploaded yet. Please upload resumes first (Option 1).");
             return;
         }
 
-        Map<ResumeDetails, Integer> scoredResumes = new HashMap<>();
+        Map<ResumeDetails_SID_2355019, Integer> scoredResumes = new HashMap<>();
         int maxPossibleScore = (jobDescription.getRequiredSkills().size() * 10) + 20 + 10;
 
-        for (ResumeDetails resume : resumes) {
+        for (ResumeDetails_SID_2355019 resume : resumes) {
             int score = calculateScore(resume, jobDescription);
             scoredResumes.put(resume, score);
         }
 
-        List<Map.Entry<ResumeDetails, Integer>> sorted = scoredResumes.entrySet()
+        List<Map.Entry<ResumeDetails_SID_2355019, Integer>> sorted = scoredResumes.entrySet()
                 .stream()
-                .sorted(Map.Entry.<ResumeDetails, Integer>comparingByValue().reversed())
+                .sorted(Map.Entry.<ResumeDetails_SID_2355019, Integer>comparingByValue().reversed())
                 .limit(5)
                 .collect(Collectors.toList());
 
         System.out.println("\n=== Top 5 Resume Match Results ===\n");
 
-        try (Connection conn = DBConnection.getConnection()) {
-            for (Map.Entry<ResumeDetails, Integer> entry : sorted) {
-                ResumeDetails resume = entry.getKey();
+        try (Connection conn = DBConnection_SID_2355019.getConnection()) {
+            for (Map.Entry<ResumeDetails_SID_2355019, Integer> entry : sorted) {
+                ResumeDetails_SID_2355019 resume = entry.getKey();
                 int score = entry.getValue();
                 double percentage = (double) score / maxPossibleScore * 100;
 
@@ -110,7 +110,7 @@ public class ResumeMatcherService {
         return foundSkills;
     }
 
-    private static int calculateScore(ResumeDetails resume, JobPosting jobDescription) {
+    private static int calculateScore(ResumeDetails_SID_2355019 resume, JobPosting_SID_2355019 jobDescription) {
         int score = 0;
 
         if (resume.getRawCVText() == null) return score;
@@ -146,7 +146,7 @@ public class ResumeMatcherService {
         return score;
     }
 
-    private static String extractJobTitles(ResumeDetails resume) {
+    private static String extractJobTitles(ResumeDetails_SID_2355019 resume) {
         if (resume.getCandidateWorkExperience() == null) return "N/A";
 
         List<String> titles = new ArrayList<>();
@@ -168,7 +168,7 @@ public class ResumeMatcherService {
 
         String query = "SELECT * FROM cvanalyzer.shortlisted_candidates ORDER BY match_percentage DESC";
 
-        try (Connection conn = DBConnection.getConnection();
+        try (Connection conn = DBConnection_SID_2355019.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query);
              java.sql.ResultSet rs = pstmt.executeQuery()) {
 

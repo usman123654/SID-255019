@@ -2,7 +2,7 @@ package com.cvanalyzer.entities;
 
 import java.util.List;
 
-public class ResumeDetails {
+public class ResumeDetails_SID_2355019 {
        
 	    private String candidateName;
 	    private String candidateEmail;

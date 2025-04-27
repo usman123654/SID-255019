@@ -3,7 +3,7 @@ package com.cvanalyzer.utils;
 
 import java.io.File;
 
-public class FileParserUtilities {
+public class FileParserUtilities_SID_2355019 {
 
     public static File[] getFilesFromFolder(String folderPath) {
         File folder = new File(folderPath);

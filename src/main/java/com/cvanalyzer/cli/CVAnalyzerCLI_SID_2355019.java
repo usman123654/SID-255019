@@ -1,11 +1,10 @@
 package com.cvanalyzer.cli;
 
-import com.cvanalyzer.services.ResumeParserService;
-import com.cvanalyzer.services.ResumeMatcherService;
-
+import com.cvanalyzer.services.ResumeParserService_SID_2355019;
+import com.cvanalyzer.services.ResumeMatcherService_SID_2355019;
 import java.util.Scanner;
 
-public class CVAnalyzerCLI {
+public class CVAnalyzerCLI_SID_2355019 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
@@ -34,20 +33,20 @@ public class CVAnalyzerCLI {
                     String resumesPath = scanner.nextLine();
 
                     // Parse resumes once
-                    ResumeParserService.uploadResumes(resumesPath);
+                    ResumeParserService_SID_2355019.uploadResumes(resumesPath);
                     // Now match the resumes to the typed job description
-                    ResumeMatcherService.matchResumes(jdText.toString(), resumesPath);
+                    ResumeMatcherService_SID_2355019.matchResumes(jdText.toString(), resumesPath);
                     System.out.println("✅ Matching completed!\n");
                     break;
 
                 case "2":
                     // still allow viewing what was parsed
-                    ResumeParserService.printParsedResumes();
+                	ResumeParserService_SID_2355019.printParsedResumes();
                     break;
 
                 case "3":
                     // view the top-5 shortlist from the database
-                    ResumeMatcherService.viewShortlistedCandidates();
+                	ResumeMatcherService_SID_2355019.viewShortlistedCandidates();
                     break;
 
                 case "4":

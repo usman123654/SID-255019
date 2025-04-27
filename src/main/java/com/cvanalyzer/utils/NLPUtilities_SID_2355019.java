@@ -11,12 +11,12 @@ import java.util.regex.Pattern;
 import java.util.List;
 import java.util.ArrayList;
 
-public class NLPUtilities {
+public class NLPUtilities_SID_2355019 {
 
     private static TokenNameFinderModel nameModel;
 
     static {
-        try (InputStream modelIn = NLPUtilities.class.getClassLoader().getResourceAsStream("models/en-ner-person.bin")) {
+        try (InputStream modelIn = NLPUtilities_SID_2355019.class.getClassLoader().getResourceAsStream("models/en-ner-person.bin")) {
             if (modelIn != null) {
                 nameModel = new TokenNameFinderModel(modelIn);
             } else {
